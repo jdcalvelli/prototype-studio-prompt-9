@@ -1,10 +1,10 @@
 extends Sprite2D
 
 var playerPositions = [
-	Vector2(0, -200),
-	Vector2(200, 0),
-	Vector2(0, 200),
-	Vector2(-200, 0),
+	Vector2(0, -250),
+	Vector2(250, 0),
+	Vector2(0, 250),
+	Vector2(-250, 0),
 ]
 
 enum playerPositionStates {
