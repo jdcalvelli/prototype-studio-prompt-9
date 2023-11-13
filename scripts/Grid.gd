@@ -1,12 +1,9 @@
 extends TileMap
+class_name grid
 
 var floorID = Vector2i(9, 1)
 
-# testing input events
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		print("test")
-		tryMove(Vector2.DOWN)
+signal doneMoving
 
 func tryMove(direction:Vector2i):
 	var magnetCurrentGridPos = local_to_map($magnet.position)
@@ -19,3 +16,5 @@ func tryMove(direction:Vector2i):
 		floorID:
 			print("matches floor id")
 			$magnet.position += Vector2(direction) * Vector2(tile_set.tile_size)
+		_:
+			doneMoving.emit()

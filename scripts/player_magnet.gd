@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name playerMagnet
 
 var playerPositions = [
 	Vector2(0, -250),
@@ -16,41 +17,36 @@ enum playerPositionStates {
 
 var currentPlayerPositionState = playerPositionStates.TOP
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	self.position = playerPositions[currentPlayerPositionState]
+func movePlayerClockwise():
+	# CHANGE STATE CLOCKWISE
+	match currentPlayerPositionState:
+		playerPositionStates.TOP:
+			# go to right
+			currentPlayerPositionState = playerPositionStates.RIGHT
+		playerPositionStates.RIGHT:
+			# go to bottom
+			currentPlayerPositionState = playerPositionStates.BOTTOM
+		playerPositionStates.BOTTOM:
+			# go to left
+			currentPlayerPositionState = playerPositionStates.LEFT
+		playerPositionStates.LEFT:
+			# go to top
+			currentPlayerPositionState = playerPositionStates.TOP
+	position = playerPositions[currentPlayerPositionState]
 
-
-func _input(event):
-	if event.is_action_pressed("moveClockwise"):
-		# CHANGE STATE CLOCKWISE
-		match currentPlayerPositionState:
-			playerPositionStates.TOP:
-				# go to right
-				currentPlayerPositionState = playerPositionStates.RIGHT
-			playerPositionStates.RIGHT:
-				# go to bottom
-				currentPlayerPositionState = playerPositionStates.BOTTOM
-			playerPositionStates.BOTTOM:
-				# go to left
-				currentPlayerPositionState = playerPositionStates.LEFT
-			playerPositionStates.LEFT:
-				# go to top
-				currentPlayerPositionState = playerPositionStates.TOP
-	elif event.is_action_pressed("moveCounterClockwise"):
-		# CHANGE STATE COUNTERCLOCKWISE
-		match currentPlayerPositionState:
-			playerPositionStates.TOP:
-				# go to left
-				currentPlayerPositionState = playerPositionStates.LEFT
-			playerPositionStates.RIGHT:
-				# go to top
-				currentPlayerPositionState = playerPositionStates.TOP
-			playerPositionStates.BOTTOM:
-				# go to right
-				currentPlayerPositionState = playerPositionStates.RIGHT
-			playerPositionStates.LEFT:
-				# go to bottom
-				currentPlayerPositionState = playerPositionStates.BOTTOM
-	# ACTUALLY DO THE MOVEMENT
-	self.position = playerPositions[currentPlayerPositionState]
+func movePlayerCounterClockwise():
+	# CHANGE STATE COUNTERCLOCKWISE
+	match currentPlayerPositionState:
+		playerPositionStates.TOP:
+			# go to left
+			currentPlayerPositionState = playerPositionStates.LEFT
+		playerPositionStates.RIGHT:
+			# go to top
+			currentPlayerPositionState = playerPositionStates.TOP
+		playerPositionStates.BOTTOM:
+			# go to right
+			currentPlayerPositionState = playerPositionStates.RIGHT
+		playerPositionStates.LEFT:
+			# go to bottom
+			currentPlayerPositionState = playerPositionStates.BOTTOM
+	position = playerPositions[currentPlayerPositionState]

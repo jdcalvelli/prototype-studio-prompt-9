@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://k0fl41vptoq4"]
+[gd_scene load_steps=9 format=3 uid="uid://k0fl41vptoq4"]
 
 [ext_resource type="Texture2D" uid="uid://b1kpnjtlaflxt" path="res://tilemap.png" id="1_2ka8b"]
 [ext_resource type="Texture2D" uid="uid://ymwvfk2avnrh" path="res://icon.svg" id="1_jdwiy"]
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_qb8cn"]
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_tdopb"]
 [ext_resource type="Script" path="res://scripts/player_magnet.gd" id="2_8x25w"]
 [ext_resource type="PackedScene" uid="uid://dui87k2qwr3o6" path="res://prefabs/magnet.tscn" id="4_k381v"]
@@ -74,6 +75,8 @@ tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_7ue2g")
 
 [node name="main_scene" type="Node2D"]
+script = ExtResource("1_qb8cn")
+numTurns = 4
 
 [node name="player_magnet" type="Sprite2D" parent="."]
 texture_filter = 1
