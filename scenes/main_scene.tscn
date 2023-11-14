@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_tdopb"]
 [ext_resource type="Texture2D" uid="uid://cuuryipu3c3h2" path="res://assets/sprites/background.png" id="2_01w4s"]
 [ext_resource type="Script" path="res://scripts/player_magnet.gd" id="2_8x25w"]
-[ext_resource type="Texture2D" uid="uid://cs6t2xj040cxr" path="res://assets/sprites/negative.png" id="3_g454m"]
+[ext_resource type="Texture2D" uid="uid://bkb7qbcan2f3n" path="res://assets/sprites/positive.png" id="3_gwuob"]
 [ext_resource type="PackedScene" uid="uid://dui87k2qwr3o6" path="res://prefabs/magnet.tscn" id="4_k381v"]
 [ext_resource type="Texture2D" uid="uid://bhrvdmb1vmd1h" path="res://assets/sprites/spritesheet.png" id="5_utfpc"]
 
@@ -31,7 +31,7 @@ texture = ExtResource("2_01w4s")
 [node name="player_magnet" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(2.08165e-12, -200)
-texture = ExtResource("3_g454m")
+texture = ExtResource("3_gwuob")
 script = ExtResource("2_8x25w")
 
 [node name="Grid" type="TileMap" parent="."]
