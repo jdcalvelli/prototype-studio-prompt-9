@@ -1,9 +1,11 @@
 extends TileMap
 class_name grid
 
-var floorID = Vector2i(9, 1)
+var floorID = Vector2i(1, 0)
+var goalID = Vector2i(0, 0)
 
 signal doneMoving
+signal goalAchieved
 
 func tryMove(direction:Vector2i):
 	var magnetCurrentGridPos = local_to_map($magnet.position)
@@ -16,5 +18,9 @@ func tryMove(direction:Vector2i):
 		floorID:
 			print("matches floor id")
 			$magnet.position += Vector2(direction) * Vector2(tile_set.tile_size)
+		goalID:
+			$magnet.position += Vector2(direction) * Vector2(tile_set.tile_size)
+			goalAchieved.emit()
 		_:
+			# ie anything that isnt the floor or the exit
 			doneMoving.emit()

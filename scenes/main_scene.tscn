@@ -1,96 +1,80 @@
-[gd_scene load_steps=9 format=3 uid="uid://k0fl41vptoq4"]
+[gd_scene load_steps=10 format=3 uid="uid://k0fl41vptoq4"]
 
-[ext_resource type="Texture2D" uid="uid://b1kpnjtlaflxt" path="res://tilemap.png" id="1_2ka8b"]
-[ext_resource type="Texture2D" uid="uid://ymwvfk2avnrh" path="res://icon.svg" id="1_jdwiy"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_qb8cn"]
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_tdopb"]
+[ext_resource type="Texture2D" uid="uid://cuuryipu3c3h2" path="res://assets/sprites/background.png" id="2_01w4s"]
 [ext_resource type="Script" path="res://scripts/player_magnet.gd" id="2_8x25w"]
+[ext_resource type="Texture2D" uid="uid://cs6t2xj040cxr" path="res://assets/sprites/negative.png" id="3_g454m"]
 [ext_resource type="PackedScene" uid="uid://dui87k2qwr3o6" path="res://prefabs/magnet.tscn" id="4_k381v"]
+[ext_resource type="Texture2D" uid="uid://bhrvdmb1vmd1h" path="res://assets/sprites/spritesheet.png" id="5_utfpc"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ue2g"]
-texture = ExtResource("1_2ka8b")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c78di"]
+texture = ExtResource("5_utfpc")
+texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gc5iy"]
 tile_size = Vector2i(64, 64)
-sources/1 = SubResource("TileSetAtlasSource_7ue2g")
+sources/0 = SubResource("TileSetAtlasSource_c78di")
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_qb8cn")
 numTurns = 4
 
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_01w4s")
+
 [node name="player_magnet" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(2.08165e-12, -200)
-texture = ExtResource("1_jdwiy")
+texture = ExtResource("3_g454m")
 script = ExtResource("2_8x25w")
 
 [node name="Grid" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_gc5iy")
 format = 2
-layer_0/tile_data = PackedInt32Array(-1, 589825, 1, -65536, 589825, 1, 65535, 589825, 1, 0, 589825, 1, 1, 589825, 1, -65535, 589825, 1, -2, 589825, 1, 65534, 589825, 1, -65538, 589825, 1, -65537, 589825, 1, -131072, 589825, 1, -131071, 589825, 1, 131070, 589825, 1, 131071, 589825, 1, 65536, 589825, 1, 65537, 589825, 1)
+layer_0/tile_data = PackedInt32Array(-1, 65536, 0, -65536, 196608, 0, 65535, 65536, 0, 0, 65536, 0, 1, 65536, 0, -65535, 65536, 0, -2, 65536, 0, 65534, 65536, 0, -65538, 65536, 0, -65537, 65536, 0, -131072, 65536, 0, -131071, 65536, 0, 131070, 196608, 0, 131071, 65536, 0, 65536, 196608, 0, 65537, 0, 0)
 script = ExtResource("1_tdopb")
 
 [node name="magnet" parent="Grid" instance=ExtResource("4_k381v")]
 position = Vector2(-32, -32)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 544.0
+offset_top = 516.0
+offset_right = 737.0
+offset_bottom = 564.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "level cleared"
+
+[node name="Lose" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 559.0
+offset_top = 516.0
+offset_right = 725.0
+offset_bottom = 564.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "level failed"

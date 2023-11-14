@@ -17,6 +17,14 @@ enum playerPositionStates {
 
 var currentPlayerPositionState = playerPositionStates.TOP
 
+func _ready():
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
+	tween.tween_property(self, "scale", Vector2(1.2, 1.2),0.5)
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
+	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.5)
+	tween.set_loops(-1)
+
 func movePlayerClockwise():
 	# CHANGE STATE CLOCKWISE
 	match currentPlayerPositionState:

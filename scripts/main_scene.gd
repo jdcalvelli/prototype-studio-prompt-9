@@ -20,6 +20,7 @@ func _ready():
 	gridRef = $Grid
 	
 	gridRef.doneMoving.connect(_on_done_moving)
+	gridRef.goalAchieved.connect(_on_goal_achieved)
 
 func _physics_process(delta):
 	match currentGameState:
@@ -44,9 +45,25 @@ func _physics_process(delta):
 					gridRef.tryMove(Vector2i.UP)
 				playerRef.playerPositionStates.LEFT:
 					gridRef.tryMove(Vector2i.RIGHT)
+		GameStates.LEVEL_FAILED:
+			if Input.is_action_just_pressed("reset"):
+				print("test")
+				get_tree().reload_current_scene()
+		GameStates.LEVEL_COMPLETE:
+			if Input.is_action_just_pressed("reset"):
+				print("test")
+				get_tree().reload_current_scene()
 					
 func _on_done_moving():
 	if numTurns == 0:
+		print("level failed")
 		currentGameState = GameStates.LEVEL_FAILED
+		$Control/Lose.visible = true
 	else:
+		print("restart loop")
 		currentGameState = GameStates.PICK_PLAYER_LOCATION
+
+func _on_goal_achieved():
+	print("goal achieved")
+	currentGameState = GameStates.LEVEL_COMPLETE
+	$Control/Win.visible = true
